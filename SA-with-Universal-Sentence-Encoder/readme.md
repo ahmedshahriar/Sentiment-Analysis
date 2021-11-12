@@ -1,4 +1,4 @@
-## How to use The Exported Model
+## How to Use The Exported Model
 
 ```
 # use the latest `tensorflow_text` version
