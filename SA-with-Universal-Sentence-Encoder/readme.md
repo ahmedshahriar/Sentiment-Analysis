@@ -1,4 +1,12 @@
 
+# Introduction
+
+The objective of this project is to perform sentiment analysis (only **positive** and **negative**) on a large hotel review dataset.
+
+The review texts are embedded using universal sentence encoder model from Tensorflow HUB
+
+The final LSTM model achieved an accuracy of **~81%** in Test Dataset (**75:25** split)
+
 ## Sneak Peek Into Data
 ![image](https://user-images.githubusercontent.com/40615350/141520815-5dda08ec-62e5-4eed-b7cc-ba28e55fb42b.png)
 
