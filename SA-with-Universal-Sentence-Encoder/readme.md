@@ -38,3 +38,14 @@ print(f"The sentiment of this sentence is : {pred_sentiment}")
 # The sentiment of this sentence is : Positive
 
 ```
+
+
+## Built With
+```
+tensorflow==2.7.0
+tensorflow_text==0.12.0
+tensorflow-hub==0.12.0
+keras==2.7.0
+keras-vis==0.4.1
+scikit-learn==0.22.2.post1
+```
