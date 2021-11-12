@@ -13085,6 +13085,22 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h1><p>The objective of this project is to perform sentiment analysis (only positive and negative) on a large hotel review dataset.</p>
+<p>The review texts are embedded using universal sentence encoder model from Tensorflow HUB</p>
+<p>The final LSTM model achieved an accuracy of ~81% in Test Dataset (75:25 split)</p>
+<h2 id="Dataset-Source">Dataset Source<a class="anchor-link" href="#Dataset-Source">&#182;</a></h2><ul>
+<li><a href="https://www.kaggle.com/jiashenliu/515k-hotel-reviews-data-in-europe">Kaggle Dataset URL - 515K Hotel Reviews Data in Europe</a></li>
+</ul>
+<h2 id="Text-Embedding-Model">Text Embedding Model<a class="anchor-link" href="#Text-Embedding-Model">&#182;</a></h2><ul>
+<li><a href="https://tfhub.dev/google/universal-sentence-encoder-multilingual-large/3">universal-sentence-encoder-multilingual-large-v3</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Libraires-&amp;-Configuration">Libraires &amp; Configuration<a class="anchor-link" href="#Libraires-&amp;-Configuration">&#182;</a></h1>
 </div>
 </div>
@@ -13098,7 +13114,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="err">!</span><span class="n">nvidia</span><span class="o">-</span><span class="n">smi</span>
@@ -13155,13 +13171,11 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="o">%%</span><span class="n">capture</span>
 <span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">tensorflow_text</span>
-<span class="c1"># !pip install bokeh</span>
-<span class="c1"># !pip install simpleneighbors[annoy]</span>
 <span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">tqdm</span>
 </pre></div>
 
@@ -13172,7 +13186,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">os</span> 
@@ -13190,7 +13204,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
@@ -13227,7 +13241,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">gpu_device_name</span><span class="p">()</span>
@@ -13243,7 +13257,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[5]:</div>
+    <div class="prompt output_prompt">Out[&nbsp;]:</div>
 
 
 
@@ -13252,6 +13266,77 @@ div#notebook {
 <pre>&#39;/device:GPU:0&#39;</pre>
 </div>
 
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">__version__</span><span class="p">,</span> <span class="n">hub</span><span class="o">.</span><span class="n">__version__</span><span class="p">,</span> <span class="n">tensorflow_text</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[16]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(&#39;2.7.0&#39;, &#39;0.12.0&#39;, &#39;2.7.0&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">freeze</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">hub</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">freeze</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">tensorflow_text</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">freeze</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">keras</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">freeze</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">scikit</span><span class="o">-</span><span class="n">learn</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.2.5/en_core_web_sm-2.2.5.tar.gz
+tensorflow-hub==0.12.0
+keras==2.7.0
+keras-vis==0.4.1
+scikit-learn==0.22.2.post1
+</pre>
+</div>
 </div>
 
 </div>
@@ -13269,7 +13354,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="n">module_url</span> <span class="o">=</span> <span class="s1">&#39;https://tfhub.dev/google/universal-sentence-encoder-multilingual-large/3&#39;</span>
@@ -13290,7 +13375,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="n">txt_1</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;the bedroom is cozy&quot;</span><span class="p">]</span>
@@ -13304,7 +13389,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="n">emb_1</span> <span class="o">=</span> <span class="n">use</span><span class="p">(</span><span class="n">txt_1</span><span class="p">)</span>
@@ -13318,7 +13403,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">emb_1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -13356,7 +13441,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">emb_1</span><span class="p">,</span> <span class="n">emb_2</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
@@ -13397,7 +13482,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="err">!</span><span class="n">mkdir</span> <span class="o">~/.</span><span class="n">kaggle</span>
@@ -13434,7 +13519,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="err">!</span><span class="n">unzip</span> <span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="mi">515</span><span class="n">k</span><span class="o">-</span><span class="n">hotel</span><span class="o">-</span><span class="n">reviews</span><span class="o">-</span><span class="n">data</span><span class="o">-</span><span class="ow">in</span><span class="o">-</span><span class="n">europe</span><span class="o">.</span><span class="n">zip</span>
@@ -13473,7 +13558,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="n">df_hotel_reviews</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/content/Hotel_Reviews.csv&quot;</span><span class="p">)</span>
@@ -13490,7 +13575,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[5]:</div>
+    <div class="prompt output_prompt">Out[&nbsp;]:</div>
 
 
 
@@ -14091,7 +14176,7 @@ Name: Reviewer_Score, dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="n">df_hotel_reviews</span><span class="o">.</span><span class="n">Reviewer_Score</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
@@ -14232,7 +14317,7 @@ Name: Reviewer_Nationality, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="n">df_hotel_reviews</span><span class="o">.</span><span class="n">Average_Score</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
@@ -14268,7 +14353,7 @@ Name: Reviewer_Nationality, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="nb">abs</span><span class="p">(</span><span class="n">df_hotel_reviews</span><span class="o">.</span><span class="n">Review_Total_Positive_Word_Counts</span> <span class="o">-</span> <span class="n">df_hotel_reviews</span><span class="o">.</span><span class="n">Review_Total_Negative_Word_Counts</span><span class="p">)</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
@@ -16364,7 +16449,7 @@ Epoch 10/10
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="n">imported_model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;/content/lstm_final_model.h5&#39;</span><span class="p">)</span>
@@ -16492,7 +16577,7 @@ _________________________________________________________________
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;This room is great&#39;</span>
@@ -16510,7 +16595,7 @@ _________________________________________________________________
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[28]:</div>
+    <div class="prompt output_prompt">Out[&nbsp;]:</div>
 
 
 
@@ -16527,7 +16612,7 @@ _________________________________________________________________
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="n">emb_test_reshaped</span> <span class="o">=</span> <span class="n">emb_test</span><span class="p">[:,</span> <span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span>
@@ -16544,7 +16629,7 @@ _________________________________________________________________
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[29]:</div>
+    <div class="prompt output_prompt">Out[&nbsp;]:</div>
 
 
 
@@ -16561,7 +16646,7 @@ _________________________________________________________________
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="n">imported_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">emb_test_reshaped</span><span class="p">)</span>
@@ -16577,7 +16662,7 @@ _________________________________________________________________
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[30]:</div>
+    <div class="prompt output_prompt">Out[&nbsp;]:</div>
 
 
 
@@ -16594,7 +16679,7 @@ _________________________________________________________________
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="n">sentimen_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">imported_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">emb_test_reshaped</span><span class="p">))</span>
@@ -16612,7 +16697,7 @@ _________________________________________________________________
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[31]:</div>
+    <div class="prompt output_prompt">Out[&nbsp;]:</div>
 
 
 
@@ -16636,7 +16721,7 @@ _________________________________________________________________
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;This room is small&#39;</span>
@@ -16658,7 +16743,7 @@ _________________________________________________________________
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[32]:</div>
+    <div class="prompt output_prompt">Out[&nbsp;]:</div>
 
 
 
@@ -16675,7 +16760,7 @@ _________________________________________________________________
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="n">sentimen_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">imported_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">emb_test_reshaped</span><span class="p">))</span>
@@ -16693,7 +16778,7 @@ _________________________________________________________________
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[33]:</div>
+    <div class="prompt output_prompt">Out[&nbsp;]:</div>
 
 
 
@@ -16717,7 +16802,7 @@ _________________________________________________________________
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">predict_sentiment</span><span class="p">(</span><span class="n">txt</span><span class="p">):</span>
@@ -16734,7 +16819,7 @@ _________________________________________________________________
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="n">sample_text</span> <span class="o">=</span> <span class="s2">&quot;I like the room service&quot;</span>
@@ -16751,7 +16836,7 @@ _________________________________________________________________
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[39]:</div>
+    <div class="prompt output_prompt">Out[&nbsp;]:</div>
 
 
 
@@ -16768,7 +16853,7 @@ _________________________________________________________________
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-python"><pre><span></span><span class="n">sample_text</span> <span class="o">=</span> <span class="s2">&quot;The windows is so big. it has good air circulation&quot;</span>
@@ -16785,7 +16870,7 @@ _________________________________________________________________
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[48]:</div>
+    <div class="prompt output_prompt">Out[&nbsp;]:</div>
 
 
 
