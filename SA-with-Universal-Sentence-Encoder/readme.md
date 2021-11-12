@@ -15,7 +15,7 @@ The final LSTM model achieved an accuracy of **~81%** in Test Dataset (**75:25**
 * [Kaggle Dataset URL - 515K Hotel Reviews Data in Europe](https://www.kaggle.com/jiashenliu/515k-hotel-reviews-data-in-europe)
 
 ## Text Embedding Model
-* [universal-sentence-encoder-multilingual](https://tfhub.dev/google/universal-sentence-encoder-multilingual/3)
+* [universal-sentence-encoder-multilingual-large-v3](https://tfhub.dev/google/universal-sentence-encoder-multilingual-large/3)
 
 ## How to Use The Exported Model
 
