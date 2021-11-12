@@ -1,3 +1,14 @@
+
+## Sneak Peek Into Data
+![image](https://user-images.githubusercontent.com/40615350/141520815-5dda08ec-62e5-4eed-b7cc-ba28e55fb42b.png)
+
+
+## Dataset Source
+* [Kaggle Dataset URL - 515K Hotel Reviews Data in Europe](https://www.kaggle.com/jiashenliu/515k-hotel-reviews-data-in-europe)
+
+## Text Embedding Model
+* [universal-sentence-encoder-multilingual](https://tfhub.dev/google/universal-sentence-encoder-multilingual/3)
+
 ## How to Use The Exported Model
 
 ```
