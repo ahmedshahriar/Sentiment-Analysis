@@ -1,3 +1,4 @@
+[![Made with Jupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange?logo=Jupyter)](https://jupyter.org/try) [![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.org/github/ahmedshahriar/Sentiment-Analysis/blob/main/SA-with-Universal-Sentence-Encoder/SA-Hotel-Reviews.ipynb) [![Open in HTML](https://img.shields.io/badge/Html-Open%20Notebook-blue?logo=HTML5)](https://nbviewer.org/github/ahmedshahriar/Sentiment-Analysis/blob/main/SA-with-Universal-Sentence-Encoder/SA-Hotel-Reviews.html)
 
 # Introduction
 
