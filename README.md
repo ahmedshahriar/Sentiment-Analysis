@@ -1,5 +1,5 @@
 # Sentiment Analysis
-[![Made with Jupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange?logo=Jupyter)](https://jupyter.org/try)  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ahmedshahriar/Sentiment-Analysis/main)
+[![Made with Jupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange?logo=Jupyter)](https://jupyter.org/try)  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ahmedshahriar/Sentiment-Analysis/main) [![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://github.dev/ahmedshahriar/Sentiment-Analysis)
 
 ## SA-with-Universal-Sentence-Encoder
 * Performed sentiment analysis (positive and negative) using [Tensorflow HUB text embedding model](https://tfhub.dev/google/universal-sentence-encoder-multilingual-large/3)\
