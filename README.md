@@ -4,3 +4,7 @@
 ## SA-with-Universal-Sentence-Encoder
 * Performed sentiment analysis (positive and negative) using [Tensorflow HUB text embedding model](https://tfhub.dev/google/universal-sentence-encoder-multilingual-large/3)\
 [![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.org/github/ahmedshahriar/Sentiment-Analysis/blob/main/SA-with-Universal-Sentence-Encoder/SA-Hotel-Reviews.ipynb) [![Open in HTML](https://img.shields.io/badge/Html-Open%20Notebook-blue?logo=HTML5)](https://nbviewer.org/github/ahmedshahriar/Sentiment-Analysis/blob/main/SA-with-Universal-Sentence-Encoder/SA-Hotel-Reviews.html)
+
+### Acknowledgment
+
+[![](https://img.shields.io/badge/Social%20Preview-%20brown%20eggs%20on%20white%20tray%20by%20Tengyart-lightgrey?style=flat-square&logo=Unsplash)](https://unsplash.com/photos/uh6msP8Md_E)
