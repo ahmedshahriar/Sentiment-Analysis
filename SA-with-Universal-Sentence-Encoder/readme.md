@@ -2,9 +2,19 @@
 
 # Introduction
 
-The objective of this project is to perform sentiment analysis (only **positive** and **negative**) on a large hotel review dataset.
+The objective of this project is to perform sentiment analysis (only **positive** and **negative**) on the 515k hotel review dataset and build an API that can classify review text.
 
-The reviews are converted into embeddings using [universal sentence encoder](https://tfhub.dev/google/universal-sentence-encoder-multilingual-large) model from Tensorflow HUB
+This project covers:
+
+- TF-IDF
+- count features
+- logistic regression
+- naive bayes
+- svm
+- xgboost
+- grid search
+- word vectors ([Universal Sentence Encoder](https://tfhub.dev/google/universal-sentence-encoder-multilingual-large/3)) model from Tensorflow HUB)
+- LSTM
 
 The final LSTM model achieved an accuracy of **~81%** in Test Dataset (**75:25** split)
 
@@ -45,7 +55,12 @@ def predict_sentiment(txt):
   emb_test_reshaped = emb_txt[:, newaxis, :]
   
   # predict sentiment score
-  sentiment_val = np.argmax(imported_model.predict(emb_test_reshaped))
+  sentiment_val = np.argmax(imported_model.predict(emb_test_reshaped)) # for 1hot-encoded labels
+
+  sentiment_val = (imported_model.predict(emb_test_reshaped) > 0.5).astype('int32') # for binary labels
+
+  # sentiment score
+  print("Score:", imported_model.predict(emb_test_reshaped).flatten()[0])
   
   # return sentiment value based on score
   return "Positive" if sentiment_val == 1 else "Negative"
@@ -59,6 +74,22 @@ print(f"The sentiment of this sentence is : {pred_sentiment}")
 
 ```
 
+### FastAPI Project Structure
+
+```
+|-- model
+  |-- lstm_sentiment_model.h5
+|-- tfhub
+  |--  universal-sentence-encoder-multilingual-large-v3
+    |-- assets
+    |-- variables
+      |-- variables.data-00000-of-00001
+      |-- variables.index
+    |-- saved_model.pb
+|-- main.py
+
+```
+
 
 ## Built With
 ```
@@ -68,4 +99,6 @@ tensorflow-hub==0.12.0
 keras==2.7.0
 keras-vis==0.4.1
 scikit-learn==0.22.2.post1
+fastapi==0.70.1
+uvicorn==0.16.0
 ```

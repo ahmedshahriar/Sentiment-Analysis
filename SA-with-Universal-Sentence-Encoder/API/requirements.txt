@@ -1,0 +1,5 @@
+fastapi
+uvicorn
+tensorflow
+tensorflow-hub
+tensorflow_text
